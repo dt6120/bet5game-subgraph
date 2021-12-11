@@ -6,9 +6,9 @@ dataSources:
     name: Bet5Game
     network: mumbai
     source:
-      address: "0xD55C30CAFF94c896c43deBd360c923855E920f63"
+      address: "0x028a96397B3cD8e205aF2aa44C420CC2B75725e9"
       abi: Bet5Game
-      startBlock: 22527157
+      startBlock: 22527485
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
