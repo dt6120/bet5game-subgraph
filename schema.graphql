@@ -1,0 +1,28 @@
+enum Status {
+  ACTIVE
+  CANCELLED
+  COMPLETE
+}
+
+type Reward @entity {
+  id: ID!
+  pool: Pool!
+  user: User!
+  amount: BigInt!
+}
+
+type Pool @entity {
+  id: ID!
+  status: Status!
+  startTime: BigInt!
+  endTime: BigInt!
+  entryFee: BigInt!
+  token: Bytes!
+  entryCount: BigInt!
+}
+
+type User @entity {
+  id: ID!
+  pools: [Pool!]
+  rewards: [Reward!] @derivedFrom(field: "user")
+}

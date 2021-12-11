@@ -1,0 +1,33 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Bet5Game
+    network: mumbai
+    source:
+      address: "0xD55C30CAFF94c896c43deBd360c923855E920f63"
+      abi: Bet5Game
+      startBlock: 22527157
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - PoolCancelled
+        - PoolCreated
+        - PoolEntered
+        - PoolRewardTransfer
+      abis:
+        - name: Bet5Game
+          file: ./abis/Bet5Game.json
+      eventHandlers:
+        - event: PoolCancelled(indexed uint256)
+          handler: handlePoolCancelled
+        - event: PoolCreated(indexed uint256,indexed uint256,uint256,indexed address,uint256)
+          handler: handlePoolCreated
+        - event: PoolEntered(indexed uint256,indexed address,address[5],int256[5],bool)
+          handler: handlePoolEntered
+        - event: PoolRewardTransfer(indexed uint256,indexed uint256,indexed address)
+          handler: handlePoolRewardTransfer
+      file: ./src/mapping.ts
